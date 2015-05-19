@@ -13,6 +13,9 @@ import java.util.List;
 /**
  * A simple application that loads a Json file containing data about flights and executes a SQL query against
  * that data using Spark.
+ *
+ * to run this example:
+ *     if you are using IntelliJ - just run it this class! :)
  */
 public class SimpleJsonAnalyser {
 
@@ -20,13 +23,15 @@ public class SimpleJsonAnalyser {
 
     public static void main(String[] args) {
 
+        String masterName = "local[2]";
+
         SparkConf conf = new SparkConf().setAppName("Datinko Data Analysis Prototype");
 
         if (args.length > 0) {
             conf.setMaster(args[0]);
         }
         else {
-            conf.setMaster("local[2]");
+            conf.setMaster(masterName);
         }
 
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -59,8 +64,8 @@ public class SimpleJsonAnalyser {
 
         if(queryResults!=null) {
             List<Row> results = queryResults.collectAsList();
-            for(Row row : results) {
-                LOGGER.info("The query result is: " + row.get(0).toString() + " " + row.get(1).toString());
+            for (Row row : results) {
+                LOGGER.warn("The query result is: " + row.get(0).toString() + " " + row.get(1).toString());
                 //System.out.printf();
             }
         }
