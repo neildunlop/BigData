@@ -8,7 +8,9 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
 /**
- * Multi threaded Kafka producer that reads data from a file and sends it to a named Kafka topic.
+ * A Kafka producer that reads data from a file and sends it to a named Kafka topic.  Fire it up
+ * and pass the name of the topic you want to send data to and the name of the file that contains
+ * the source data.
  */
 public class KafkaThreadedTestProducer {
 
